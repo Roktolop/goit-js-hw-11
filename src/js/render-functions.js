@@ -25,11 +25,14 @@ async function onFormSubmit(event) {
   const query = input.value.trim();;
   if (!query) return;
 
+  showLoader();
+
   const images = await getImagesByQuery(query); 
   console.log(images);
   
   if (images.length > 0) {
-    createGallery(images); 
+    createGallery(images);
+    hideLoader();
   }
 
 
@@ -44,16 +47,16 @@ export function createGallery(images) {
           <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
           <ul class="photo-list">
             <li class="photo-item">
-              <p>Likes ${likes}</p>
+              <p>Likes <span class="photo-item-text">${likes}</span></p>
             </li>
             <li class="photo-item">
-              <p>Views ${views}</p>
+              <p>Views <span class="photo-item-text">${views}</span></p>
             </li>
             <li class="photo-item">
-              <p>Comments ${comments}</p>
+              <p>Comments <span class="photo-item-text">${comments}</span></p>
             </li>
             <li class="photo-item">
-              <p>Downloads ${downloads}</p>
+              <p>Downloads <span class="photo-item-text">${downloads}</span></p>
             </li>
           </ul>
         </a>
