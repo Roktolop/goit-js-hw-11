@@ -47,16 +47,16 @@ export function createGallery(images) {
           <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
           <ul class="photo-list">
             <li class="photo-item">
-              <p>Likes <span class="photo-item-text">${likes}</span></p>
+              <p class="text">Likes <span class="photo-item-span">${likes}</span></p>
             </li>
             <li class="photo-item">
-              <p>Views <span class="photo-item-text">${views}</span></p>
+              <p class="text">Views <span class="photo-item-span">${views}</span></p>
             </li>
             <li class="photo-item">
-              <p>Comments <span class="photo-item-text">${comments}</span></p>
+              <p class="text">Comments <span class="photo-item-span">${comments}</span></p>
             </li>
             <li class="photo-item">
-              <p>Downloads <span class="photo-item-text">${downloads}</span></p>
+              <p class="text">Downloads <span class="photo-item-span">${downloads}</span></p>
             </li>
           </ul>
         </a>
