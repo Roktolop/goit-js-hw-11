@@ -14,13 +14,39 @@ async function onFormSubmit(event) {
   clearGallery();
   
   const query = input.value.trim();;
-  if (!query) return;
+  if (!query) {
+    iziToast.warning({
+      title: 'Warning',
+      message: 'Please enter a search query.',
+      position: 'topRight'
+    });
+    return;
+  }
 
+  clearGallery();
   showLoader();
 
-  const images = await getImagesByQuery(query); 
-  console.log(images);
-  
-  createGallery(images);
-  hideLoader();
+  try {
+    const images = await getImagesByQuery(query);
+
+    if (!images || images.length === 0) {
+      iziToast.info({
+        title: 'No Results',
+        message: 'No images found for your search.',
+        position: 'topRight'
+      });
+      return;
+    }
+
+    createGallery(images);
+  } catch (error) {
+    console.error("Error loading images:", error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load images. Please try again later.',
+      position: 'topRight'
+    });
+  } finally {
+    hideLoader();
+  }
 }
