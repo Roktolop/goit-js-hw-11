@@ -1,42 +1,20 @@
 `use strict`;
 
-import SimpleLightbox from "simplelightbox";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-import { getImagesByQuery } from "./pixabay-api.js";
 
-const form = document.querySelector(".form");
-const input = document.querySelector('input[name="search-text"]');
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const gallery = document.querySelector(".gallery");
 
 
 const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
   captionsData: "alt",
   captionDelay: 250,
 });
 
-form.addEventListener("submit", onFormSubmit);
-
-async function onFormSubmit(event) {
-  event.preventDefault();
-
-  clearGallery();
-  
-  const query = input.value.trim();;
-  if (!query) return;
-
-  showLoader();
-
-  const images = await getImagesByQuery(query); 
-  console.log(images);
-  
-  if (images.length > 0) {
-    createGallery(images);
-    hideLoader();
-  }
-
-
-}
 
 //murkup create
 

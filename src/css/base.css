@@ -99,6 +99,7 @@ main:has(.back-link) {
 
 .photo-item-span {
   display: flex;
+  justify-content: center;
 
   font-weight: 400;
   font-size: 12px;
