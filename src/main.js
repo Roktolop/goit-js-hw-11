@@ -1,4 +1,8 @@
-`use strict`;
+'use strict';
+
+import axios from 'axios';
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 import { createGallery, clearGallery, hideLoader, showLoader } from './js/render-functions.js';
 import { getImagesByQuery } from './js/pixabay-api.js';
@@ -11,9 +15,7 @@ form.addEventListener("submit", onFormSubmit);
 async function onFormSubmit(event) {
   event.preventDefault();
 
-  clearGallery();
-  
-  const query = input.value.trim();;
+  const query = input.value.trim();
   if (!query) {
     iziToast.warning({
       title: 'Warning',
@@ -28,24 +30,11 @@ async function onFormSubmit(event) {
 
   try {
     const images = await getImagesByQuery(query);
-
-    if (!images || images.length === 0) {
-      iziToast.info({
-        title: 'No Results',
-        message: 'No images found for your search.',
-        position: 'topRight'
-      });
-      return;
-    }
+    console.log(images);
 
     createGallery(images);
   } catch (error) {
-    console.error("Error loading images:", error);
-    iziToast.error({
-      title: 'Error',
-      message: 'Failed to load images. Please try again later.',
-      position: 'topRight'
-    });
+    console.error('Error fetching images:', error);
   } finally {
     hideLoader();
   }

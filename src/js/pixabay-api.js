@@ -19,7 +19,7 @@ export async function getImagesByQuery(query) {
 
     const images = response.data.hits;
 
-    if (images.length === 0) {
+    if (!images || images.length === 0) {
       iziToast.error({
         message: 'Sorry, no images match your search query. Please try again.',
         position: 'topRight',
